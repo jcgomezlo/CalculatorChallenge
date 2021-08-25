@@ -1,6 +1,9 @@
 package com.company;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Calculator {
 
@@ -10,48 +13,32 @@ public class Calculator {
         Id = new HashMap<String, Float>();
     }
 
-    public float Sum(float a, float b) {
-        float c = a + b;
-        System.out.println(c);
-        return c;
+    public float calculate(float x, float y, String operation){
+        float result = 0;
+
+        if(operation.equals("SUM")){
+            result = x + y;
+        } else if(operation.equals("MINUS")){
+            result = x - y;
+        } else if(operation.equals("MULTIPLY")){
+            result = x * y;
+        }else if(operation.equals("DIVIDE")){
+            result = x / y;
+        }
+        return result;
     }
 
-    public void Sum(float a, float b, String id) {
-        Id.put(id, Sum(a, b));
+    public float calculate(float x, float y, String operation, String IdSave){
+        float result = calculate( x,  y, operation);
+        Id.put(IdSave,result);
+        return result;
     }
 
-    public float Minus(float a, float b) {
-        float c = a - b;
-        System.out.println(c);
-        return c;
-    }
-
-    public void Minus(float a, float b, String id) {
-        Id.put(id, Minus(a, b));
-    }
-
-    public float Multiply(float a, float b) {
-        float c = a * b;
-        System.out.println(c);
-        return c;
-    }
-
-    public void Multiply(float a, float b, String id) {
-        Id.put(id, Multiply(a, b));
-    }
-
-    public float Divide(float a, float b) {
-        float c = a / b;
-        System.out.println(c);
-        return c;
-    }
-
-    public void Divide(float a, float b, String id) {
-        Id.put(id, Divide(a, b));
-    }
-
-    public float Show(String id) {
+    public float show(String id) {
         return Id.get(id);
+
     }
+
+
 
 }
