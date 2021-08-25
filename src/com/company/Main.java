@@ -31,7 +31,6 @@ public class Main {
                 continue;
             }
 
-
             if(!operation.equals("EXIT") && !operation.equals("SHOW")){
 
                 if(params.length < 3){
@@ -41,6 +40,8 @@ public class Main {
 
                 x = GetNumber(params[1], calculator);
                 y = GetNumber(params[2], calculator);
+
+                if(x == Float.MIN_VALUE || y == Float.MIN_VALUE) continue;
 
                 if(params.length == 4){
                     ParameterHasId = true;
@@ -53,7 +54,7 @@ public class Main {
                 case "EXIT":
                     break loop;
                 case "SHOW":
-                    System.out.println(calculator.show(params[1]));
+                    show(calculator, params[1]);
                     break;
                 default:
                     if(ParameterHasId){
@@ -66,8 +67,13 @@ public class Main {
         }
     }
 
-
-
+    public static void show(Calculator calculator, String Id){
+        try {
+            System.out.println(calculator.show(Id));
+        } catch (Exception e){
+            System.out.println("El ID especificado no existe");
+        }
+    }
 
     public static boolean IsNumeric(String text){
         if(text == null) return false;
